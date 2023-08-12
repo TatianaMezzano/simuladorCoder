@@ -3,15 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prestamos Mezzano</title>
-        
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
     <h1>PRESTAMOS MEZZANO</h1>
 
-    <p>Llevate hasta $50000 al instante</p>
+    <form action="" method="post">
 
+               
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="user_name" />
+          
+        
+            <label for="documento">Documento:</label>
+            <input type="number" id="documento" name="user_document" />
+         
+            <label for="telefono">Telefono:</label>
+            <input type="number" id="telefono" name="user_phone" />
+          
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="user_mail" />
+       
 
-    <script src="index.js"></script>
+            <input type="button" value="Validar" id="botonUno"/>
+
+        
+      </form>
+
+      
+
+      <script src="./index.js"></script>
 </body>
 </html>

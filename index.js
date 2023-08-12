@@ -1,100 +1,185 @@
-class Cliente {
+const documentosDeudores = [12345678, 23456789, 98765432, 87654321];
 
-    constructor(nombre, documento, edad, direccion){
-        this.nombre = nombre;
-        this.documento = documento;
-        this.edad = edad;
-        this.direccion = direccion;
-    }
 
-} 
+let docu = document.getElementById("documento");
+let documento = docu.value;
+documento = parseInt(documento)
 
-const documentosDeudores = [12345678, 23456789, 98765432, 87654321]
 
-const clienteUno = new Cliente(prompt("Ingrese su nombre: "), prompt("Ingrese su documento: "), prompt("Ingrese su edad: "), prompt("Ingrese su direccion: "));
+const creacionFormDos = () => {
+    let formularioDos=document.createElement("form");
+ 
+		
+ 
+        let trabajoLabel=document.createElement("label");		
+        let trabajo=document.createElement("input");
+ 
+        let antiguedadLabel=document.createElement("label");
+		let antiguedad=document.createElement("input");
+ 
+        let sueldoLabel=document.createElement("label");
+		let sueldo=document.createElement("input");
+ 
+        let montoLabel=document.createElement("label");
+		let monto=document.createElement("input");
 
-clienteUno.documento = parseInt(clienteUno.documento);
-let i = 0;
-
-while (i <= documentosDeudores.length && clienteUno["documento"] != documentosDeudores[i]){
-    i ++;
+        let botonDos=document.createElement("input");
+ 
+		
+ 
+		//Asignar atributos al formulario
+        	formularioDos.setAttribute('method', "post");
+        	formularioDos.setAttribute('action', "");
+ 
+        	//Asignar atributos a la caja de trabajo
+        	trabajo.setAttribute('type', "text");
+            trabajo.setAttribute('id', "trabajo")
+            trabajoLabel.setAttribute('for', "trabajo")
+            trabajoLabel.innerText = "Trabajo: "
+ 
+        	//Asignar atributos a la caja de antiguedad
+        	antiguedad.setAttribute('type', "text");
+        	antiguedad.setAttribute('id', "antiguedad");
+            antiguedadLabel.setAttribute('for', "antiguedad")
+            antiguedadLabel.innerText = "Antiguedad: "
+ 
+        	//Asignar atributos a la caja de sueldo
+        	sueldo.setAttribute('type', "number");
+        	sueldo.setAttribute('id', "sueldo");
+            sueldoLabel.setAttribute('for', "sueldo")
+            sueldoLabel.innerText = "Sueldo: "
+ 
+        	//Asignar atributos a la caja de monto
+        	monto.setAttribute('type', "number");
+        	monto.setAttribute('id', "monto");
+            montoLabel.setAttribute('for', "monto")
+            montoLabel.innerText = "Monto solicitado: "
+ 
+        	
+		//Asignar atributos al boton
+		    botonDos.setAttribute('type', "button");	
+        	botonDos.setAttribute('value', "Validar");
+            botonDos.setAttribute('id', "botonDos");
+ 
+            formularioDos.appendChild(trabajoLabel);
+        	formularioDos.appendChild(trabajo);
+            formularioDos.appendChild(antiguedadLabel);
+        	formularioDos.appendChild(antiguedad);
+            formularioDos.appendChild(sueldoLabel);
+        	formularioDos.appendChild(sueldo);
+            formularioDos.appendChild(montoLabel);
+        	formularioDos.appendChild(monto);
+        	formularioDos.appendChild(botonDos);
+        	document.body.append(formularioDos);
 }
 
-if (i > documentosDeudores.length) {
+const creacionFormTres = () => {
 
-    let monto = prompt("Ingrese aquí el monto deseado para su préstamo (debe ser un número entre 10000 y 50000, múltiplo de 500):");
-    let montoNum = parseInt(monto);
 
-    const validarMonto = num => {
-        while ((num < 10000) || (num > 50000) || (num % 500 != 0)){
-            monto = prompt("Ingrese un valor valido");
-            num = parseInt(monto);
-        } 
+            let formularioTres=document.createElement("form");
 
-        return num;
-    }
+            let cuotasLabel=document.createElement("label");		
+            let cuotas=document.createElement("input");
 
+            let botonTres=document.createElement("input");
+
+
+            formularioTres.setAttribute('method', "post");
+        	formularioTres.setAttribute('action', "");
+ 
+        	//Asignar atributos a la caja de cuotas
+            cuotas.setAttribute('id', "cuotas")
+            cuotas.setAttribute('type', "number")
+            cuotasLabel.setAttribute('for', "cuotas")
+            cuotasLabel.innerText = "Cuotas (1, 2, 3, 6, 9 o 12): "
+
+
+
+
+            botonTres.setAttribute('type', "button");
+        	botonTres.setAttribute('value', "OK");
+            botonTres.setAttribute('id', "botonTres");
+
+            formularioTres.appendChild(cuotasLabel);
+            formularioTres.appendChild(cuotas);
+            formularioTres.appendChild(botonTres);
+            document.body.append(formularioTres);
+}
+
+let botonUno = document.getElementById("botonUno");
+
+botonUno.onclick = (documento) => {
+    
+    let i = 0;
    
-    let montoValidado = validarMonto(montoNum);
+    while (i < documentosDeudores.length && documento != documentosDeudores[i]){
+        i ++;
+    }
+    
+    if (i >= documentosDeudores.length) {
 
 
+        creacionFormDos();    
+      
+        let sueldo = document.getElementById("sueldo");
+        let monto = document.getElementById("monto");
+        let botonDos = document.getElementById("botonDos");
 
-    const calcularMensualidad = num => {
+        let sueldoNum = parseInt(sueldo.value)
+        let montoNum = parseInt(monto.value)
 
-        let cuotas = prompt("Ingrese el numero de cuotas (debe ser un número entre 1 y 12):");
+        const validacionDos = (sueldoNum, montoNum) => {
+            if (montoNum <= sueldoNum ) {
+                creacionFormTres();
+            } else {
+                let mensaje = document.createElement("p");  
+                mensaje.innerText = "no puede acceder a un prestamo tan grande"
+                document.body.append(mensaje);
 
-        switch (cuotas) {
-            case "1":
-                num = num + (num * 0.05);    
-                break;
-            case "2":
-                num = (num / 2) + (num * 0.10);
-                break;
-            case "3":
-                num = (num / 3) + (num * 0.15);
-                break;
-            case "4":
-                num = (num / 4) + (num * 0.20);
-                break;
-            case "5":
-                num = (num / 5) + (num * 0.25);
-                break;
-            case "6":
-                num = (num / 6) + (num * 0.30);
-                break;
-            case "7":
-                num = (num / 7) + (num * 0.35);
-                break;
-            case "8":
-                num = (num / 8) + (num * 0.40);
-                break;
-            case "9":
-                num = (num / 9) + (num * 0.45);
-                break;
-            case "10":
-                num = (num / 10) + (num * 0.50);
-                break;
-            case "11":
-                num = (num / 11) + (num * 0.55);
-                break;
-            case "12":
-                num = (num / 12) + (num * 0.60);
-                break;
-                
+            }
+            }
+        botonDos.addEventListener("click", validacionDos);
+
+        let inputCuotas = document.getElementById("cuotas")
+        let numeroCuotas = inputCuotas.value;
+
+        botonTres.onclick = (numeroCuotas) => {
             
-        }
 
-        return num;
+            let cuotaMensual;
+            switch (numeroCuotas) {
 
+                case "1":
+                    cuotaMensual = montoNum * 1.07;    
+                    break;
+                case "2":
+                    cuotaMensual = (montoNum * 1.09) / 2;    
+                    break;
+                case "3":
+                    cuotaMensual = (montoNum * 1.15) / 3;
+                    break;
+                case "6":
+                    cuotaMensual = (montoNum * 1.20) / 6;
+                    break;
+                case "9":
+                    cuotaMensual = (montoNum * 1.35) / 9;
+                    break;
+                case "12":
+                    cuotaMensual = (montoNum * 1.5) / 12;
+                    break;                   
+                
+            }
 
+            console.log(cuotaMensual)
+    
+        } 
+    
+    
+    
+}else {
+        let mensajeDeudor = document.createElement("p");  
+        mensajeDeudor.innerText = "no puede acceder a nuestros prestamos"
+        document.body.append(mensajeDeudor);
     }
 
-  
-
-    let cuotaMensual = calcularMensualidad(montoValidado);
-
-    alert("su cuota mensual será de: $" + cuotaMensual);
-
-} else {
-    alert("Su documento está en la lista de deudores. No puede acceder a nuestros préstamos.")
 }
