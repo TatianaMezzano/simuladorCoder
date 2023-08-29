@@ -2,9 +2,22 @@
     margin: 1rem;
 }
 
+.contenedor__titulo{
+    background-color: rgb(154, 103, 219);}
+   
 .titulo{
     text-align: center;
     margin: 2rem;
+    font-family: 'Raleway', sans-serif;
 }
 
+.contenedor__footer{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(119, 247, 144);
+}
 
+.subtitulo{
+    color: rgb(154, 103, 219);
+    font-size: 2rem;
+}

@@ -1,0 +1,68 @@
+[
+    {
+        "name": "Jose Perez",
+        "telefono":"098111222",
+        "documento":"111222333"
+    },
+
+    {
+        "name": "Ana Garcia",
+        "telefono": "099333444",
+        "documento": "444555666"
+    },
+
+    {
+        "name": "Luis Martinez",
+        "telefono": "088777888",
+        "documento": "777888999"
+    },
+
+    {
+        "name": "Maria Rodriguez",
+        "telefono": "077666555",
+        "documento": "666555444"
+    },
+    
+    {
+        "name": "Carlos Sanchez",
+        "telefono": "066555444",
+        "documento": "555444333"
+    },
+
+    {
+        "name": "Laura Lopez",
+        "telefono": "055444333",
+        "documento": "444333222"
+    },
+
+    {
+        "name": "Javier Torres",
+        "telefono": "044333222",
+        "documento": "333222111"
+    },
+
+    {
+        "name": "Isabel Ramirez",
+        "telefono": "033222111",
+        "documento": "222111000"
+    },
+
+    {
+        "name": "Sergio Vargas",
+        "telefono": "022111000",
+        "documento": "111000999"
+    },
+
+    {
+        "name": "Paula Jimenez",
+        "telefono": "011000999",
+        "documento": "000999888"
+    },
+
+    {
+        "name": "Andres Castro",
+        "telefono": "000999888",
+        "documento": "999888777"
+    }
+    
+]

@@ -4,37 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRESTAMOS MEZZANO</title>
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
+    
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <h1 class="titulo">PRESTAMOS MEZZANO</h1>
+
+    <hr>
+    <header >
+        <div class="contenedor__titulo">
+
+            <h1 class="titulo">PRESTAMOS MEZZANO</h1>
+
+        </div>
+    </header>
+
+    <hr>
 
     
-
-
-    <form action="" method="post">
-
-               
-        <label for="name">Nombre:</label>
-        <input type="text" id="nombre" name="user_name" />
-      
-    
-        <label for="documento">Documento:</label>
-        <input type="number" id="documento" name="user_document" />
-     
-        <label for="telefono">Telefono:</label>
-        <input type="number" id="telefono" name="user_phone" />
-      
-        <label for="email">Email:</label>
-        <input type="email" id="mail" name="user_mail" />
    
 
-        <input type="button" value="Validar" id="boton"/>
+    <main>
+        <form action="" method="post">
 
+                
+            <label for="name">Nombre:</label>
+            <input type="text" id="nombre" name="user_name" />
+        
+        
+            <label for="documento">Documento:</label>
+            <input type="number" id="documento" name="user_document" />
+        
+            <label for="telefono">Telefono:</label>
+            <input type="number" id="telefono" name="user_phone" />
+        
+            <label for="email">Email:</label>
+            <input type="email" id="mail" name="user_mail" />
     
-  </form>
+
+            <input type="button" value="Validar" id="boton"/>
+
+        
+        </form>
+    </main>
+
+    <footer></footer>
 
     <script src="./index.js"></script>
 </body>
