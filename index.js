@@ -1,3 +1,4 @@
+//funcion que despliega los montos a elegir y sus respectivos botones
 const mostrarMontos = () => {
 
     const subtituloMonto = document.createElement("h2");
@@ -38,7 +39,7 @@ const mostrarMontos = () => {
     
 }
 
-
+//funcion que despliega las cuotas a elegir y sus respectivos botones
 const mostrarCuotas= () => {
 
     const subtituloCuotas = document.createElement("h2");    
@@ -80,6 +81,8 @@ const mostrarCuotas= () => {
 
 
 }
+
+//funcion que calcula y despliega la cuota mensual
 
 const mostrarCuotaMensual = (monto) => {
 
@@ -186,39 +189,9 @@ const mostrarCuotaMensual = (monto) => {
 
 
 
-
-
-const documento = document.getElementById("documento");
-const boton = document.getElementById("boton");
-
-const nombre = document.getElementById("nombre");
-const tel = document.getElementById("telefono");
-const mail = document.getElementById("mail");
-
-const nombreValue = nombre.value;
-const docuValue = documento.value;
-const telValue = telefono.value;
-const mailValue = mail.value;
-
-
-const solicitante = {
-    nombre: nombreValue, 
-    documento: docuValue, 
-    telefono: telValue, 
-    mail: mailValue
-}
-
-const solicitanteEnJSON = JSON.stringify(solicitante);
-
-
-localStorage.setItem('solicitante', solicitanteEnJSON);
-
-
-
+//funcion que valida si la persona puede acceder a los prestamos o es deudora
  
 const validarDoc = (valor) => {
-
-    let documentosDeudores = [];
 
     const getData = () => {
         return new Promise((resolve, reject) => {
@@ -230,10 +203,7 @@ const validarDoc = (valor) => {
                 if (data.length === 0) {
                     reject(new Error('Data is empty'));
                 } else {
-                    for (var i = 0; i < data.length; i++) {
-                        const docu= parseInt(data[i].documento);
-                        documentosDeudores[i] = docu;
-                    }
+                    const documentosDeudores = data.map(item => parseInt(item.documento));
                     resolve(documentosDeudores);
                 }
             })
@@ -243,44 +213,32 @@ const validarDoc = (valor) => {
         });
     }
 
-
     getData()
-    .then((response) => {
-        console.log("Documentos deudores:", response);
+    .then((documentosDeudores) => {
+        console.log("Documentos deudores:", documentosDeudores);
         
-    })
-    .catch((err) => console.log(err.message));
+        let i = 0;
+        while ((i < documentosDeudores.length) && (valor !== documentosDeudores[i])) {
+            i++;
+        }
 
-        
-    let i = 0;
+        if (i === documentosDeudores.length) {
+            mostrarMontos();
 
-    while ((i <= documentosDeudores.length) && (valor !== documentosDeudores[i])) {
-
-        i++;
-
-    }
-
-    if (i > documentosDeudores.length) {
-        
-        mostrarMontos();     
-
-
-
-        const botonUno = document.getElementById("botonUno");
+            const botonUno = document.getElementById("botonUno");
         const botonDos = document.getElementById("botonDos");
         const botonTres = document.getElementById("botonTres");
         const botonCuatro = document.getElementById("botonCuatro");
         const botonCinco = document.getElementById("botonCinco");
 
         let monto;
-
         
 
         botonUno.onclick = () => {
             
             monto = 10000;
 
-            
+
             const pDos = document.getElementById("pDos");
             pDos.remove();
             botonDos.remove();
@@ -303,8 +261,7 @@ const validarDoc = (valor) => {
             
 
         
-            mostrarCuotaMensual(monto);
-            
+            mostrarCuotaMensual(monto);          
 
             
             
@@ -412,28 +369,53 @@ const validarDoc = (valor) => {
 
             mostrarCuotaMensual(monto);
 
+        }} else {
+        
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Su documento esta en nuestro registro de deudores!',
+                footer: '<a href="">Ayuda</a>'
+              })
         }
-
-        
-
-        
-
-    } else {
-        
-
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Su documento esta en nuestro registro de deudores!',
-            footer: '<a href="">Ayuda</a>'
-          })
-    }
+    })
+    .catch((err) => console.log(err.message));
 }
 
 
-boton.onclick = () => {
     
-    const documentoValue = parseInt(documento.value);
+
+
+
+boton.onclick = () => {
+
+    const documento = document.getElementById("documento");
+    const boton = document.getElementById("boton");
+
+    const nombre = document.getElementById("nombre");
+    const tel = document.getElementById("telefono");
+    const mail = document.getElementById("mail");
+
+    const nombreValue = nombre.value;
+    const docuValue = parseInt(documento.value);
+    const telValue = telefono.value;
+    const mailValue = mail.value;
+
+
+    const solicitante = {
+        nombre: nombreValue, 
+        documento: docuValue, 
+        telefono: telValue, 
+        mail: mailValue
+    }
+
+    const solicitanteEnJSON = JSON.stringify(solicitante);
+
+
+    localStorage.setItem('solicitante', solicitanteEnJSON);
+    
+    const documentoValue = parseInt(docuValue);
     
     validarDoc(documentoValue);
 }
